@@ -1,123 +1,103 @@
-//Añadir un nuevo tweet...
-//La fuente del evento para crear un nuevo tweet, es el botón submit.
-var source1 = document.getElementById("submit-tweet");
-//console.log(source1);
-//Declaramos que estamos "escuchando" en busca de eventos.
-source1.addEventListener("click", postTweet);
+/*Se creara el evento de enviar el tweet*/
+var source1 = document.getElementById("send");
+/*Se le pide que preste atención al click*/
+source1.addEventListener("click", tweet);
 
-//Declaramos la función "postTweet"
-function postTweet(event) {
-  //Creamos un nuevo elemento (div) que contendrá el nuevo tweet.
+/*Función para postear nuevos tweets*/
+function tweet(event) {
+  /*Se creará el div que contendrá el nuevo tweet*/
   var div = document.createElement('div');
-  var ref = document.getElementById("tweetpublished");
-  var container = document.getElementById("tweetpublished");
+  var ref = document.getElementById("publish");
+  var container = document.getElementById("publish");
   //Colocamos el nuevo div en su lugar en el body.
   container.insertBefore(div, container.childNodes[0]);
-  //Le colocamos la clase correspondiente.
-  div.classList.add("newTweet");
-  //Creamos un p que irá dentro del div.
+  div.classList.add("new");
+  /*se creará un nuevo p que contiene el texto del tweet*/
   var newP = document.createElement("p");
-  //Buscamos el mensaje que fue colocado en el input.
-  var message = document.getElementById("tweetbox").value;
-  //console.log(message);
-  //Colocamos el mensaje dentro del p.
+  var message = document.getElementById("tweettext").value;
+  /*mensaje del tweet*/
   newP.innerText = message;
-  //Agregamos el p al div.
   div.appendChild(newP);
-  //Añadiendo impresión de hora exacta del tweet en párrafo nuevo
+  /*Esto añadira la hora a cada tweet*/
   var newP2 = document.createElement("p");
-  //Asignando clase a impresión de horario
   newP2.classList.add("dateClass");
   var d = new Date();
-  var x = document.getElementById("submit-tweet");
-  //Horas, minutos y segundos
+  var x = document.getElementById("send");
   var h = addZero(d.getHours());
   var m = addZero(d.getMinutes());
   var s = addZero(d.getSeconds());
-  //Definiendo sintaxis del núevo párrafo
+  /*De esta manera se mostraá la impresión de la hora de cada tweet*/
   var time = x.innerHTML = h + ":" + m + ":" + s;
   newP2.innerText = time;
-  //Agregamos nuevo p al div.
   div.appendChild(newP2).appendChild(time);
 }
 
-//Añadiendo número "0" en horas de un solo dígito
+/*Con esta función se agrega un 0 a las horas que solo tienen un digito*/
 function addZero(i) {
   if (i < 10) {
     i = "0" + i;
   }
   return i;
 }
-
-//Contador de carácteres...
-//La fuente del evento para contar los carácteres es el input textarea.
-var source2 = document.getElementById("tweetbox");
-//Declaramos que estamos "escuchando" en busca de eventos.
-source2.addEventListener("input", countCharacters);
-//Creamos la función que contará el número de carácteres.
+/*contador de carcteres */
+var byText = document.getElementById("tweettext");
+/*Se pide que preste atención a lo contenido en el input*/
+byText.addEventListener("input", countCharacters);
+/*Función para contar los caracteres*/
 function countCharacters() {
-  //Le indicamos que el límite de carácteres es 140.
-  var maxLength = 140;
-  var howManyCharacters = tweetbox.value.length;
-  //Colocamos un if, que busque el length dentro del valor de tweet box si es menor o igual que el límite de carácteres.
+  /*se determina el límite de caracteres*/
+  var maxLength = 280;
+  var howManyCharacters = tweettext.value.length;
+  /*este if determina el largo máximo del tweet*/
   if (howManyCharacters <= maxLength) {
-    //Actualizamos el span contador de carácteres con la resta del límite de carácteres menos el valor actual del tweetbox.
-    charactercount.innerHTML = (maxLength - howManyCharacters) + " characters remaining";
-  }
-  //Colocamos otro if, que busque el length dentro del valor de tweet box si es mayor que el límite de carácteres.
-  else if (howManyCharacters > maxLength) {
-    //Actualizamos el span contador de carácteres con la resta del valor actual menos el límite de carácteres.
-    charactercount.innerHTML = -(howManyCharacters - maxLength) + " characters remaining";
+    /*el contador mostrar los caracteres que restan para introducir*/
+    contador.innerHTML = (maxLength - howManyCharacters) + " characters remaining";
+  }else if (howManyCharacters > maxLength)
+  {
+    contador.innerHTML = -(howManyCharacters - maxLength) + " characters remaining";
   }
 }
+/*desactivar el botón de Twittear*/
+document.getElementById("send").disabled = true;
+var charactersCount = document.getElementById("tweettext");
+byText.addEventListener("input", activeButton);
 
-
-//Desactivar un botón...
-//Valor por default es true.
-document.getElementById("submit-tweet").disabled = true;
-//La fuente del evento para contar los carácteres es el input textarea.
-var source3 = document.getElementById("tweetbox");
-//Declaramos que estamos "escuchando" en busca de eventos.
-source2.addEventListener("input", enabledisableButton);
-
-//Hacemos la función enabledisableButton
-function enabledisableButton() {
-  if (tweetbox.value == '') { //Si está vacío, ejecutaremos disableButton
+/*funciones para activar o desactivar el botón*/
+function activeButton(){
+  /*Si el valor del input está vacío se desactiva el botón*/
+  if (tweettext.value == '')
+  {
     disableButton();
   }
-  if (tweetbox.value !== '') { //Si no está vacío, ejecutaremos enableButton
+  /*de lo contrario se activa el botón*/
+  else (tweettext.value !== '')
+  {
     enableButton();
   }
 }
-//Hacemos la función enableButton
+/*función de activar botón*/
 function enableButton() {
-  //Activamos el botón
-  document.getElementById("submit-tweet").disabled = false;
+  document.getElementById("send").disabled = false;
 }
-//Hacemos la función disableButton
+/*función de desactivar botón*/
 function disableButton() {
-  //Desactivamos el botón
-  document.getElementById("submit-tweet").disabled = true;
+  document.getElementById("send").disabled = true;
 }
 
 
 //Cambia de clase de acuerdo al número de carácteres...
 //La fuente del evento para contar los carácteres es el input textarea.
-var source3 = document.getElementById("tweetbox");
+var charactersCount = document.getElementById("tweettext");
 //Declaramos que estamos "escuchando" en busca de eventos.
-source3.addEventListener("input", whatClass);
-//Creamos la función que contará el número de carácteres.
-function whatClass() {
+charactersCount.addEventListener("input", counter);
+/*desactivara el botón de twittear si se exceden los 280 caracteres*/
+function counter() {
   //Le indicamos que el límite de carácteres es 140.
-  var maxLength = 140;
-  var howManyCharacters = tweetbox.value.length;
+  var maxLength = 280;
+  var howManyCharacters = tweettext.value.length;
   if (howManyCharacters > maxLength) {
     disableButton();
   }
-  // else if (howManyCharacters > 120) {
-  //   var newTweet=  document.getElementsByClassName("newTweet");
-  //    //Le colocamos la clase correspondiente.
-  // newTweet.classList.add("CharactersClass120");
-  // }
+
 
 }
