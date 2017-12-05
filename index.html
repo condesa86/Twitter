@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!--Vínculamos estilos-->
+  <!--Se une con las hojas de estilo que usaremos-->
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
   <link rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
@@ -14,10 +14,11 @@
 </head>
 
 <body>
-  <!-- Añadiendo menú de navegación -->
+  <!-- Barra de navegación fija -->
   <nav class="fixed-top">
-    <div class="nav">
+    <div class="nav-fixed">
       <ul>
+        <!--Iconos de la barra de navegación-->
         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>Inicio</a></li>
         <li><a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>Momentos</a></li>
         <li><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i>Notificaciones</a></li>
@@ -25,51 +26,53 @@
       </ul>
       <i class="fa fa-twitter" aria-hidden="true"></i>
       <input type="search" class="search" placeholder="Buscar en Twitter" class="fa fa-search" aria-hidden="true"></i>
-      <img id="small-pic" class="border-radius" src="assets/images/cc.jpg" alt="Laboratoria">
-      <button type="button" class="twt-btn" name="button">Twittear</button>
+      <img id="profile" class="border-radius" src="assets/images/cc.jpg" alt="Cristian">
+      <button type="button" class="btn1" name="button">Twittear</button>
     </div>
   </nav>
-  <!-- Contenedor de secciones -->
+  <!-- Sección que contendrá las diferenetes secciones  -->
   <section id="main-container">
-    <!-- Sección fija con datos del perfil -->
-    <section id="section1">
-      <img class="back-picture" src="assets/images/concert.jpg" alt="concert">
-      <img id="profile-pic" class="border-radius" src="assets/images/cc.jpg" alt="cristian-castro">
+    <!-- Sección de perfil de persona-->
+    <section id="section-profile">
+      <img class="background-image" src="assets/images/concert.jpg" alt="concert">
+      <img id="profile-image" class="border-radius" src="assets/images/cc.jpg" alt="cristian-castro">
       <div class="user">
         <h2>Cristian Castro</h2>
         <p class="user-at">@CristianCastroOficial</p>
-        <p class="bio">Cristian Castro estrenó el video de su segundo sencillo “Simplemente tú”, el cual protagoniza junto con la actriz Claudia Álvarez.</p>
+        <p class="info">Cristian Castro estrenó el video de su segundo sencillo “Simplemente tú”, el cual protagoniza junto con la actriz Claudia Álvarez.</p>
       </div>
-      <section class="followers-num">
+      <!--Esta área contiene los npúmeros de twwets,seguidores y seguidos-->
+      <section class="followers">
       <ul>
-        <li class="subject-list">Tweets</li>
+        <li class="numbers">Tweets</li>
         <li>2000</li>
       </ul>
       <ul>
-        <li class="subject-list">Siguiendo</li>
+        <li class="numbers">Siguiendo</li>
         <li>80</li>
       </ul>
       <ul>
-        <li class="subject-list">Seguidores</li>
+        <li class="numbers">Seguidores</li>
         <li>19897</li>
       </ul>
     </section>
     </section>
-    <!-- Sección con funcionalidad de escribir y enviar tweet -->
-    <section id="section2">
+    <!-- Sección donde se podrá escribir el tweet antes de publicarlo -->
+    <section id="section-tweet">
       <form class="">
-        <textarea class="myTweet" placeholder="¿Qué está pasando?" id="tweetbox" cols="30" rows="10"></textarea>
-        <input type="button" class="send-tweet" class="twt-btn2" id="submit-tweet" value="Twittear">
-        <span class="contador" id="charactercount"></span>
+        <textarea class="myTweet" placeholder="¿Qué está pasando?" id="tweettext" cols="30" rows="10"></textarea>
+        <input type="button"  class="twt-btn2" id="send" value="Twittear">
+        <span  id="contador"></span>
     </section>
-    <!-- Secciones creadas con tweet posteado -->
-    <section id="section3">
-      <div class="tweetcontainer">
-        <div id="tweetpublished">
+    <!-- Secciones donde se mostrará el tweet ya publicado -->
+    <section id="section-publish">
+      <div class="tweetarea">
+        <div id="publish">
 
         </div>
       </div>
     </section>
+    <!--Vínculo con js-->
     <script src="js/app.js"></script>
 </body>
 
